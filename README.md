@@ -14,6 +14,27 @@ Uma configuração muito básica do nixos, não sou um usuário mais avancado ni
 
 Uma instalação básica e rápida
 
+Clone esse repo
 ```sh
-$ nix run github:JoaoVitorMendes/nixos-config
+git clone https://github.com/JoaoVitorMendes/nixos-config
+cd nixos-config
+cd nixos
+```
+Dentre entre, delete o hardware-configuration.nix, pois isso é de uso hardware pessoal
+```sh
+rm hardware-configuration.nix
+```
+Gere seu hardware-configuration.nix que se adeque
+```sh
+sudo nixos-generate-config
+```
+Mude <b> joao, </b> para seu nome host da maquina no arquivo
+```
+flake.nix
+home-manager/home.nix
+nixos/configuration.nix
+```
+Feito as devidas alterações, entre com
+```sh
+nixos-rebuild switch --flake .#seunome && home-manager switch --flake .
 ```
