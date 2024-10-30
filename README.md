@@ -36,5 +36,5 @@ nixos/configuration.nix
 ```
 Feito as devidas alterações, entre com
 ```sh
-nixos-rebuild switch --flake .#seunome && home-manager switch --flake .
+nixos-rebuild switch --flake . && home-manager switch --flake .
 ```
