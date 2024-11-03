@@ -1,85 +1,50 @@
+
+{ config, pkgs, pkgs-playwright, ... }:
+
 {
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "joao";
+  home.homeDirectory = "/home/joao";
 
-  imports = [
+  # release notes.
+  home.stateVersion = "24.05"; # Please read the comment before changing.
 
-    # ./nvim.nix
-      ./kitty.nix
+
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = [
+    pkgs.picom
+    
+    ### usando a versao especvifica 
+   pkgs-playwright.playwright
   ];
 
-  nixpkgs = {
-    # You can add overlays here
+  nixpkgs.config.allowUnfreePredicate = 
+     pkg: builtins.elem ( pkgs.lib.getName pkg )
+     [
+      "discord"
+     ];
 
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
   };
 
-  # TODO: Set your username
-  home = {
-    username = "joao";
-    homeDirectory = "/home/joao";
+  home.sessionVariables = {
+    # EDITOR = "emacs";
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  home.packages = with pkgs;
-   [
-       kitty
-
-       microsoft-edge 
-       telegram-desktop
-
-       feh
-       xfce.thunar
-       dmenu
-       i3lock
-       i3blocks
-   ];
-
-
-
-  #in home.nix
-  xsession.windowManager.i3 = {
-    enable = true;
-    package = pkgs.i3-gaps;
-    config = {
-      modifier = "Mod4";
-      gaps = {
-        inner = 10;
-        outer = 5;
-      };
-    };
-  };
-
-  # Enable home-manager and git
+  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.git.enable = true;
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
 }
