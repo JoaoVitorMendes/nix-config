@@ -11,6 +11,7 @@
     # ./nvim.nix
       ./i3.nix
       ../programs/kitty.nix
+      ../programs/stylix/stylix.nix
   ];
 
   nixpkgs = {
@@ -48,15 +49,15 @@
   home.packages = with pkgs;
    [
        kitty
-
        microsoft-edge 
        telegram-desktop
+       xfce.thunar
+       stremio
+       discord
 
        feh
-       xfce.thunar
        dmenu
-
-       stremio
+       htop
    ];
 
 

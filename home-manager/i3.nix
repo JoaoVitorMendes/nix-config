@@ -104,17 +104,17 @@
               command = "xinput float 19";
               always = true;
             }
-            {
-              command = "${pkgs.feh}/bin/feh --bg-scale Imagens/wallpaper.png";
-              always = true;
-              notification = false;
-            }
+ #           {
+#              command = "${pkgs.feh}/bin/feh --bg-scale Imagens/wallpaper.png";
+ #             always = true;
+ #             notification = false;
+ #           }
           ];
 
           bars =
            [];
 
-          fonts = ["JetBrains Mono 8"];
+#          fonts = ["JetBrains Mono 8"];
 
           gaps = {
             inner = 5;
@@ -129,20 +129,20 @@
           };
          
           colors = {
-            background = "#4d2e00";
+#            background = "#4d2e00";
             focused = {
-              background = "#000000";
-              border = "#1a0f00";
-              childBorder = "#1a0f00";
-              indicator = "#ff0000";
-              text = "#663c00";
+#              background = "#000000";
+#              border = "#1a0f00";
+ #             childBorder = "#1a0f00";
+#              indicator = "#ff0000";
+#              text = "#663c00";
              };
             focusedInactive = {
-              background = "#000000";
-              border = "#000000";
-              childBorder = "#1a0f00";
-              indicator = "#484e50";
-              text = "#4d2d00";
+#              background = "#000000";
+#              border = "#000000";
+#              childBorder = "#1a0f00";
+#              indicator = "#484e50";
+#              text = "#4d2d00";
            };
           };
                  
