@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../programs/system/garbage.nix
     ];
 
   # Bootloader.
@@ -54,6 +55,7 @@
     defaultSession = "none+i3";
   };
 
+  programs.dconf.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -61,11 +63,17 @@
     variant = "";
   };
 
+ 
+  # Impressora
+  services.printing.enable = true;
+
+  services.avahi = {
+     enable = true;
+     nssmdns4 = true;
+     openFirewall = true;
+  };
   # Configure console keymap
   console.keyMap = "br-abnt2";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -150,5 +158,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
