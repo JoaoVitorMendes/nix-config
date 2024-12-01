@@ -16,8 +16,10 @@
       foreground = "#708183";
       selection_foreground ="#93a1a1";
       selection_background = "#002b36";
+      dynamic_background_opacity = true;
+      enable_audio_bell = false;
+      background_blur = 54;
       cursor = "#708183";
-
       color0  = "#002731";
       color1  = "#d01b24";
       color2  = "#728905";
