@@ -48,20 +48,49 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs;
    [
+       # user
        kitty
        microsoft-edge 
        telegram-desktop
        xfce.thunar
        stremio
        discord
-
+       keepassxc
+       eclipses.eclipse-java
+       emacs
+       inconsolata
+       steam
+                
+       # archives
+       zip
+       xz
+       unzip
+       p7zip
+     
+       # utils
+       eza # A modern replacement for ‘ls’
+       fzf # A command-line fuzzy finder      
        feh
        dmenu
        htop
+
+       # language
+       clang
+       llvm
+       clang-tools
+
    ];
 
 
 
+   programs.vscode = {
+       enable = true;
+       extensions = with pkgs.vscode-extensions; [
+           dracula-theme.theme-dracula
+           yzhang.markdown-all-in-one
+     ];
+   };
+   
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
